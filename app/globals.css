@@ -23,7 +23,13 @@ html {
 }
 /* Add this at the very top, before everything else: */
 html {
-  font-size: 20px;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 body {
