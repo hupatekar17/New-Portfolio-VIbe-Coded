@@ -1,58 +1,78 @@
 import type { Metadata } from 'next'
-
+ 
 export const metadata: Metadata = {
   title: 'Projects — Harshavardhan Patekar',
 }
-
-const projects = [
+ 
+interface Project {
+  title: string
+  description: string
+  tags: string[]
+  highlights: string[]
+  status: string
+  type: string
+  link?: string
+  linkLabel?: string
+}
+ 
+const projects: Project[] = [
   {
-    title: 'Fraud Detection ML System',
+    title: 'Fraud Detection with Machine & Deep Learning',
     description:
-      'End-to-end machine learning pipeline for detecting fraudulent transactions on large-scale datasets (500K+ records). Built with Python, scikit-learn, and MongoDB for data storage.',
-    tags: ['Python', 'scikit-learn', 'MongoDB', 'ML Pipeline', 'Data Engineering'],
+      'Masters project — end-to-end fraud detection pipeline on the IEEE-CIS dataset (590K+ financial transactions) addressing severe class imbalance (3% fraud cases).',
+    tags: ['Python', 'XGBoost', 'LightGBM', 'MLP', 'SMOTE', 'scikit-learn'],
     highlights: [
-      'Processed 500K+ records with feature engineering and preprocessing pipelines',
-      'Evaluated multiple classifiers (Random Forest, XGBoost, Logistic Regression)',
-      'Achieved high precision/recall balance using SMOTE for class imbalance',
+      'Applied advanced preprocessing — feature engineering, normalisation, categorical encoding, and SMOTE resampling to improve minority class learning stability',
+      'Compared Logistic Regression, Random Forest, LightGBM, XGBoost, and MLP models, achieving up to 0.92 AUC-ROC with high fraud recall and minimised false negatives',
+      'Conducted precision-recall trade-off analysis to optimise detection sensitivity for high-risk transactions in real-world financial scenarios',
+      'Implemented reproducible experimentation workflows and performance benchmarking using cross-validation techniques',
     ],
     status: 'completed',
     type: 'ML / AI',
+    link: 'https://colab.research.google.com/drive',
+    linkLabel: 'View on Colab ↗',
   },
   {
-    title: 'Performance Management System (PMS)',
+    title: 'Coronary Artery & Chronic Kidney Disease Detection',
     description:
-      'Internal workflow automation platform built at Cloudhandz Logistics that improved operational efficiency by 25% across departments.',
-    tags: ['Node.js', 'Express.js', 'MongoDB', 'REST API'],
+      'Bachelors final year project — supervised ML classification pipeline on a structured medical dataset of 40K patient records with 24 clinical attributes including blood pressure, serum creatinine, haemoglobin levels, and comorbidity indicators.',
+    tags: ['Python', 'Random Forest', 'Streamlit', 'scikit-learn', 'Healthcare ML'],
     highlights: [
-      'Automated multi-step approval workflows replacing manual spreadsheet tracking',
-      'Built role-based dashboards for team leads and HR',
-      'Reduced review cycle time by ~25% through automated notifications',
+      'Implemented Random Forest Classifier (130 estimators, entropy criterion, max depth 11) with a 70/30 train-test split for robust evaluation',
+      'Achieved 96–98% classification accuracy with balanced precision and recall across CKD-positive patients',
+      'Validated using confusion matrix, F1-score, and classification reports',
+      'Built an interactive Streamlit web interface for real-time disease risk prediction based on 24 dynamic health inputs',
     ],
-    status: 'production',
-    type: 'Backend',
+    status: 'completed',
+    type: 'ML / AI',
+    link: 'https://github.com/hupatekar17/CADandCKD',
+    linkLabel: 'View on GitHub ↗',
+  },
+  {
+    title: 'Brainwave — Modern AI SaaS Landing Page',
+    description:
+      'Fully responsive landing page for an AI chatbot app built with React (Vite), Tailwind CSS, and custom SVG animations.',
+    tags: ['React', 'Vite', 'Tailwind CSS', 'SVG Animations', 'React Router'],
+    highlights: [
+      'Hero section with parallax effects, bento-grid services, pricing cards, and roadmap timeline',
+      'Mobile-first navigation with hamburger menu and smooth Tailwind-driven interactions',
+      'Reusable components — Header, Hero, Section wrappers — for scalable UI/UX patterns',
+      'Single-page navigation via React Router with absolute positioning for layered design elements',
+    ],
+    status: 'live',
+    type: 'Frontend',
+    link: 'https://brainwave-harsh.netlify.app/',
+    linkLabel: 'View Live ↗',
   },
   {
     title: 'Logistics API Platform',
     description:
-      'Scalable RESTful API system powering logistics workflows for 5+ enterprise clients. Optimised MongoDB schemas reduced API latency by 40%.',
+      'Scalable RESTful API system powering logistics workflows for 5+ enterprise clients at Cloudhandz. Optimised MongoDB schemas reduced API latency by 40%.',
     tags: ['Node.js', 'Express.js', 'MongoDB', 'PostgreSQL', 'REST APIs'],
     highlights: [
-      'Reduced API response time from 480ms to 290ms (~40%) via indexing optimisation',
+      'Reduced API response time from 480ms to 290ms (~40%) via indexing and schema optimisation',
       'Designed multi-tenant schema supporting 5+ enterprise clients',
-      'Implemented automated document validation reducing manual processing by 50%',
-    ],
-    status: 'production',
-    type: 'Backend',
-  },
-  {
-    title: 'Enterprise Workflow Automation (Mindtree)',
-    description:
-      'Java-based backend service modules for enterprise approval and validation workflows handling 10,000+ monthly transactions.',
-    tags: ['Java', 'REST APIs', 'JUnit', 'Enterprise'],
-    highlights: [
-      'Improved API response time by 27% through legacy code refactoring',
-      'Increased unit test coverage from 58% to 82%',
-      'Implemented centralised logging reducing production defects by 25%',
+      'Automated document validation pipelines, cutting manual processing by over 50%',
     ],
     status: 'production',
     type: 'Backend',
@@ -70,19 +90,19 @@ const projects = [
     status: 'live',
     type: 'Full-Stack',
     link: '/',
+    linkLabel: "View Site ↗",
   },
 ]
-
+ 
 const statusColors: Record<string, string> = {
   completed: 'text-yellow-500 border-yellow-500/30 bg-yellow-500/5',
   production: 'text-accent border-accent/30 bg-accent/5',
   live: 'text-blue-400 border-blue-400/30 bg-blue-400/5',
 }
-
+ 
 export default function ProjectsPage() {
   return (
-    <div className="w-full mx-auto px-6 lg:px-12 py-20">
-
+    <div className="w-full px-8 lg:px-16 py-20">
       <div className="mb-12">
         <p className="font-mono text-accent text-sm mb-4">$ ls -la ./projects</p>
         <h1 className="font-display font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight">
@@ -92,9 +112,9 @@ export default function ProjectsPage() {
           Things I&apos;ve shipped, built, and learned from.
         </p>
       </div>
-
+ 
       <div className="grid gap-5">
-        {projects.map((p, i) => (
+        {projects.map((p: Project, i: number) => (
           <article
             key={i}
             className="border border-border rounded-xl p-6 bg-surface hover:border-accent/40 transition-all group"
@@ -109,17 +129,22 @@ export default function ProjectsPage() {
                 </span>
               </div>
               {p.link && (
-                <a href={p.link} className="font-mono text-sm text-accent hover:underline">
-                  view →
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-sm text-accent hover:underline"
+                >
+                  {p.linkLabel || 'view →'}
                 </a>
               )}
             </div>
-
+ 
             <h2 className="font-display font-bold text-2xl mb-2 group-hover:text-accent transition-colors">
               {p.title}
             </h2>
             <p className="text-base text-[#999] mb-4 leading-relaxed">{p.description}</p>
-
+ 
             <ul className="space-y-1 mb-5">
               {p.highlights.map((h, j) => (
                 <li key={j} className="text-sm text-muted flex gap-2">
@@ -128,7 +153,7 @@ export default function ProjectsPage() {
                 </li>
               ))}
             </ul>
-
+ 
             <div className="flex flex-wrap gap-1.5">
               {p.tags.map((t) => (
                 <span key={t} className="font-mono text-xs text-muted border border-border rounded px-2 py-0.5 bg-bg">
